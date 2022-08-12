@@ -1,19 +1,23 @@
 <template>
-    <div class="main-panel">
-        <div class="menus">
-            <div v-for="(menu, index) in menus" @click="toPage(menu)">
-                {{ menu.name }}
+    <div>
+        <Nav></Nav>
+        <div class="main-panel">
+            <div class="menus">
+                <div v-for="(menu, index) in menus" @click="toPage(menu)">
+                    {{ menu.name }}
+                </div>
+            </div>
+            <div style="padding:20px;width:100%">
+                <router-view></router-view>
             </div>
         </div>
-        <div style="padding:20px;width:100%">
-            <router-view></router-view>
-        </div>
+        <div class="title">EMT</div>
     </div>
-    <div class="title">EMT</div>
 </template>
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
+import Nav from '../../components/Nav.vue'
 const router = useRouter()
 
 let menus = [
@@ -39,6 +43,8 @@ const toPage = (menu) => {
     color: #64676a;
     max-width: 1500px;
     margin: 0 auto;
+    border-radius:15px ;
+    background-color: aliceblue;
 }
 
 .menus {
@@ -47,7 +53,7 @@ const toPage = (menu) => {
     line-height: 55px;
     text-align: center;
     width: 180px;
-    height: 95vh;
+    height: 85vh;
     border-right: 1px solid #dadada;
 
     div {

@@ -3,12 +3,24 @@
     margin: 0;
 }
 
+body::-webkit-scrollbar {
+display: none;
+}
+
+body {
+-ms-overflow-style: none;
+height: 100%;
+width: calc(100vw + 18px);
+overflow: auto;
+}
 html {
+    height: 100%;
     box-sizing: border-box;
     background: url('./assets/img/background.jpeg') no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
     padding-top: 100px;
+    overflow: -moz-hidden-unscrollable;
 }
 
 img {

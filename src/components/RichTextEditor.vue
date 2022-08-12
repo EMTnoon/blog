@@ -3,7 +3,7 @@
         <Toolbar :editor="editorRef" :defaultConfig="toolbarConfig" :mode="mode"
             style="border-bottom: 1px solid #ccc" />
         <Editor :defaultConfig="editorConfig" :mode="mode" v-model="valueHtml.val"
-            style="height: 400px; overflow-y: hidden" @onCreated="handleCreated" />
+            style="height: 700px; overflow-y: hidden" @onCreated="handleCreated" />
     </div>
 </template>
 <script setup>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <n-button class="addButton" @click="showAddModel = true">添加</n-button>
+        <n-button class="addButton" @click="showAddModel = true" type="info">添加</n-button>
         <n-table :bordered="false" :single-line="false">
             <thead>
                 <tr>

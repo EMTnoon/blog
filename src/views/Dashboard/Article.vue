@@ -7,8 +7,8 @@
                     <template #footer>
                         <n-space align="center">
                             <div>发布时间：{{ blog.create_time }}</div>
-                            <n-button @click="toUpdate(blog)">修改</n-button>
-                            <n-button @click="toDelete(blog)">删除</n-button>
+                            <n-button dashed type="info" @click="toUpdate(blog)">修改</n-button>
+                            <n-button dashed type="error" @click="toDelete(blog)">删除</n-button>
                         </n-space>
                     </template>
                 </n-card>
@@ -24,28 +24,28 @@
                 <n-form-item label="标题">
                     <n-input v-model:value="addArticle.title" placeholder="请输入标题" />
                 </n-form-item>
-                <n-form-item label="封面">
-                    <n-upload multiple directory-dnd :action="uploadUrl" :max="5" :on-finish="successImg">
+                <n-form-item class="upload" label="封面">
+                    <n-upload multiple directory-dnd :action="uploadUrl" :max="1" :on-finish="successImg">
                         <n-upload-dragger>
-                            <div style="margin-bottom: 12px">
-                                <n-icon size="48" :depth="5">
+                            <div style="margin-bottom: 10px">
+                                <n-icon size="30" :depth="4">
                                     <archive-icon />
                                 </n-icon>
                             </div>
-                            <n-text style="font-size: 16px">
+                            <n-text style="font-size: 13px">
                                 点击或者拖动文件到该区域来上传
                             </n-text>
                         </n-upload-dragger>
                     </n-upload>
                 </n-form-item>
-                <n-form-item label="分类">
-                    <n-select v-model:value="addArticle.categoryId" :options="categortyOptions" />
+                <n-form-item class="upload" label="分类">
+                    <n-select  v-model:value="addArticle.categoryId" :options="categortyOptions" />
                 </n-form-item>
                 <n-form-item label="内容">
                     <rich-text-editor v-model="addArticle.content"></rich-text-editor>
                 </n-form-item>
                 <n-form-item label="">
-                    <n-button @click="add">提交</n-button>
+                    <n-button type="primary" @click="add">提交</n-button>
                 </n-form-item>
             </n-form>
         </n-tab-pane>
@@ -54,14 +54,14 @@
                 <n-form-item label="标题">
                     <n-input v-model:value="updateArticle.title" placeholder="请输入标题" />
                 </n-form-item>
-                <n-form-item label="分类">
+                <n-form-item class="upload" label="分类">
                     <n-select v-model:value="updateArticle.categoryId" :options="categortyOptions" />
                 </n-form-item>
                 <n-form-item label="内容">
                     <rich-text-editor v-model="updateArticle.content"></rich-text-editor>
                 </n-form-item>
                 <n-form-item label="">
-                    <n-button @click="update">提交</n-button>
+                    <n-button type="primary" @click="update">提交</n-button>
                 </n-form-item>
             </n-form>
         </n-tab-pane>
@@ -85,7 +85,7 @@ const adminStore = AdminStore()
 
 //文章添加数据
 const addArticle = reactive({
-    categoryId: 0,
+    categoryId: null,
     title: "",
     content: "",
     coverImg: "",
@@ -94,7 +94,7 @@ const addArticle = reactive({
 //文章修改数据
 const updateArticle = reactive({
     id: 0,
-    categoryId: 0,
+    categoryId: null,
     title: "",
     content: "",
 })
@@ -199,4 +199,7 @@ const toDelete = async (blog) => {
 </script>
 
 <style lang="scss" scoped>
+.upload{
+    width: 300px;
+}
 </style>

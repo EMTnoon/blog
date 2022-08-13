@@ -39,13 +39,13 @@
                 </n-form-item>
                 <n-form-item class="upload " label="分类">
                     <n-select  v-model:value="addArticle.categoryId" :options="categortyOptions" />
+                    <n-form-item class="ml-30">
+                        <n-button type="primary" color="#ff69b4" @click="add">完成提交</n-button>
+                    </n-form-item>
                 </n-form-item>
                 <n-form-item label="内容">
                     <rich-text-editor v-model="addArticle.content"></rich-text-editor>
                 </n-form-item>
-                <!-- <n-form-item label="">
-                    <n-button type="primary" @click="add">提交</n-button>
-                </n-form-item> -->
             </n-form>
         </n-tab-pane>
         <n-tab-pane name="update" tab="修改">
@@ -55,32 +55,29 @@
                 </n-form-item>
                 <n-form-item class="upload" label="分类">
                     <n-select v-model:value="updateArticle.categoryId" :options="categortyOptions" />
+                    <n-button type="primary" color="#78d2f5" class="ml-30" @click="update">提交更新</n-button>
                 </n-form-item>
                 <n-form-item label="内容">
                     <rich-text-editor v-model="updateArticle.content"></rich-text-editor>
                 </n-form-item>
-                <n-form-item label="">
+                <!-- <n-form-item label="">
                     <n-button type="primary" @click="update">提交</n-button>
-                </n-form-item>
+                </n-form-item> -->
             </n-form>
         </n-tab-pane>
     </n-tabs>
 </template>
 
 <script setup>
-import { AdminStore } from '../../stores/AdminStore'
 import { ref, reactive, inject, onMounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
 import RichTextEditor from '../../components/RichTextEditor.vue'
-import { ArchiveOutline as ArchiveIcon } from "@vicons/ionicons5";
 import blogApi from '../../api/blogApi'
 import CategoryApi from '../../api/CategoryApi'
-const router = useRouter()
+
 
 const message = inject("message")
 const server_url = inject("server_url")
 const uploadUrl = server_url + '/upload/cover_upload'
-const adminStore = AdminStore()
 
 //文章添加数据
 const addArticle = reactive({
@@ -197,5 +194,8 @@ const toDelete = async (blog) => {
 <style lang="scss" scoped>
 .upload{
     width: 300px;
+}
+.ml-30{
+    margin-left: 30px;
 }
 </style>

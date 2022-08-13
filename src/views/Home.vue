@@ -57,7 +57,7 @@
             <n-divider />
             <n-modal v-model:show="showCollection">
                 <n-card style="width: 300px" :bordered="false" size="huge" role="dialog" aria-modal="true">
-                    <img src="../assets/img/Collection.PNG" alt="">
+                    <img src="../assets/img/Collection.jpg" alt="">
                 </n-card>
             </n-modal>
             <div class="footer">
@@ -190,7 +190,7 @@ const goQQ = () => {
                 .imgbox {
                     width: 100%;
                     height: 120px;
-                    background: url(../../src/assets/img/role.png) no-repeat;
+                    background: url(../../src/assets/img/role.jpg) no-repeat;
                     background-size: 100%;
                 }
 
@@ -205,7 +205,7 @@ const goQQ = () => {
                     overflow: hidden;
                     border: 1px #64676a solid;
                     box-shadow: 1px 1px 29px -7px rgba(63, 83, 181, 1);
-                    background: url(../../src/assets/img/tou.png) no-repeat;
+                    background: url(../../src/assets/img/tou.jpg) no-repeat;
                     background-size: 100%;
                 }
 

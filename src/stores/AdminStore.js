@@ -5,7 +5,7 @@ export const AdminStore = defineStore("admin", {
         return {
             id: 0,
             account: "",
-            token: "",
+            token: localStorage.getItem("token"),
             time: "",
         }
     },

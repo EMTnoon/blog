@@ -17,9 +17,10 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import { AdminStore } from '../../stores/AdminStore';
 import Nav from '../../components/Nav.vue'
 const router = useRouter()
-
+const adminStore = AdminStore()
 let menus = [
     { id:1, name: "文章管理", href: "/dashboard/article" },
     { id:2, name: "分类管理", href: "/dashboard/category" },
@@ -29,6 +30,8 @@ let menus = [
 
 const toPage = (menu) => {
     if (menu.href == 'logout') {
+        adminStore.token = ''
+        localStorage.removeItem('token')
         router.push("/")
     } else {
         router.push(menu.href)

@@ -56,11 +56,13 @@ const login = async () => {
         adminStore.token = result.data.data.token
         adminStore.account = result.data.data.account
         adminStore.id = result.data.data.id
+        localStorage.setItem("token",result.data.data.token)
         message.info("登录成功")
         if (admin.rember) {
             localStorage.setItem("account", admin.account)
             localStorage.setItem("password", admin.password)
             localStorage.setItem("rember", admin.rember ? 1 : 0)
+            
         }
         router.push("/dashboard")
     } else {

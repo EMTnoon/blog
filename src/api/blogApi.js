@@ -6,11 +6,6 @@ class blogApi {
             `/blog/search?keyword=${pageInfo.keyword}&page=${pageInfo.page}&pageSize=${pageInfo.pageSize}&categoryId=${pageInfo.categoryId}`
         )
     }
-    // get (pageInfo) {
-    //     return axiosUtils.get(
-    //         `/blog/search?page=${pageInfo.page}&pageSize=${pageInfo.pageSize}`
-    //     )
-    // }
     getBlogTime () {
         return axiosUtils.get(`/blog/createtime`)
     }

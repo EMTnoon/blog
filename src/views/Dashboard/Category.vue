@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item) in categoryList" :key="item.id">
+                <tr v-for="item in categoryList" :key="item.id">
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>

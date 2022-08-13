@@ -15,6 +15,7 @@ let routes = [
     },
     {
         path: "/dashboard",
+        redirect: '/dashboard/article',
         component: () => import('../views/Dashboard/Dashboard.vue'),
         children: [
             {

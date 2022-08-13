@@ -6,7 +6,7 @@
                     {{ blog.content }}
                     <template #footer>
                         <n-space align="center">
-                            <div>发布时间：{{ blog.create_time }}</div>
+                            <div>发布时间：{{ blog.date }}</div>
                             <n-button dashed type="info" @click="toUpdate(blog)">修改</n-button>
                             <n-button dashed type="error" @click="toDelete(blog)">删除</n-button>
                         </n-space>
@@ -14,9 +14,8 @@
                 </n-card>
             </div>
             <n-space>
-                <div @click="toPage(pageNum)" v-for="pageNum in  pageInfo.pageCount">
-                    <div :style="'color:' + (pageNum == pageInfo.page ? 'blue' : '')">{{ pageNum }}</div>
-                </div>
+                  <n-pagination class="pageContral"  @update:page="loadBlogs" v-model="pageInfo.page"
+            :page-count="pageInfo.pageCount" />
             </n-space>
         </n-tab-pane>
         <n-tab-pane name="add" tab="添加文章">
@@ -116,6 +115,8 @@ const pageInfo = reactive({
     pageSize: 3,
     pageCount: 0,
     count: 0,
+    keyword: '',
+    categoryId: 0,
 })
 
 onMounted(() => {
@@ -124,17 +125,16 @@ onMounted(() => {
 })
 
 //读取博客列表
-const loadBlogs = async () => {
-    let res = await blogApi.get(pageInfo)
-    let temp_rows = res.data.data.rows;
-    for (let row of temp_rows) {
-        row.content += "..."
-        let d = new Date(row.create_time)
-        row.create_time = `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+const loadBlogs = async (page = 1) => {
+    if (page != 0) {
+        pageInfo.page = page
     }
-    blogListInfo.value = temp_rows;
+    let res = await blogApi.getList(pageInfo)
+    blogListInfo.value = res.data.data.rows
     pageInfo.count = res.data.data.count;
-    pageInfo.pageCount = parseInt(pageInfo.count / pageInfo.pageSize) + (pageInfo.count % pageInfo.pageSize > 0 ? 1 : 0)
+    pageInfo.pageCount =
+        parseInt(pageInfo.count / pageInfo.pageSize) +
+        (pageInfo.count % pageInfo.pageSize > 0 ? 1 : 0)
 }
 
 //读取分类
@@ -161,10 +161,6 @@ const add = async () => {
     }
 }
 
-const toPage = async (pageNum) => {
-    pageInfo.page = pageNum
-    loadBlogs()
-}
 
 const toUpdate = async (blog) => {
     tabValue.value = "update"

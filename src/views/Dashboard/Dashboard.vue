@@ -3,11 +3,11 @@
         <Nav></Nav>
         <div class="main-panel">
             <div class="menus">
-                <div v-for="(menu, index) in menus" @click="toPage(menu)">
+                <div v-for="menu in menus" @click="toPage(menu)" :key="menu.id">
                     {{ menu.name }}
                 </div>
             </div>
-            <div style="padding:20px;width:100%">
+            <div class="ControlBar">
                 <router-view></router-view>
             </div>
         </div>
@@ -16,14 +16,14 @@
 </template>
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import Nav from '../../components/Nav.vue'
 const router = useRouter()
 
 let menus = [
-    { name: "文章管理", href: "/dashboard/article" },
-    { name: "分类管理", href: "/dashboard/category" },
-    { name: "退出", href: "logout" },
+    { id:1, name: "文章管理", href: "/dashboard/article" },
+    { id:2, name: "分类管理", href: "/dashboard/category" },
+    {id:3,  name: "退出", href: "logout" },
 ];
 
 
@@ -45,26 +45,26 @@ const toPage = (menu) => {
     margin: 0 auto;
     border-radius:15px ;
     background-color: aliceblue;
-}
-
-.menus {
+    .ControlBar{
+        padding: 20px;
+        width: 100%;
+        border-left: 1px solid #dadada;
+    }
+    .menus {
     padding: 20px 0;
     box-sizing: border-box;
     line-height: 55px;
     text-align: center;
     width: 180px;
     height: 85vh;
-    border-right: 1px solid #dadada;
-
     div {
         cursor: pointer;
-
         &:hover {
-            color: #fd760e;
+            color: #b819a3;
         }
     }
 }
-
+}
 .title {
     font-size: 65px;
     font-weight: bold;

@@ -60,9 +60,6 @@
                 <n-form-item label="内容">
                     <rich-text-editor v-model="updateArticle.content"></rich-text-editor>
                 </n-form-item>
-                <!-- <n-form-item label="">
-                    <n-button type="primary" @click="update">提交</n-button>
-                </n-form-item> -->
             </n-form>
         </n-tab-pane>
     </n-tabs>
@@ -71,6 +68,7 @@
 <script setup>
 import { ref, reactive, inject, onMounted } from 'vue'
 import RichTextEditor from '../../components/RichTextEditor.vue'
+import { ArchiveOutline as ArchiveIcon } from '@vicons/ionicons5'
 import blogApi from '../../api/blogApi'
 import CategoryApi from '../../api/CategoryApi'
 

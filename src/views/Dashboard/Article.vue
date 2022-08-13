@@ -37,15 +37,15 @@
                         </n-upload-dragger>
                     </n-upload>
                 </n-form-item>
-                <n-form-item class="upload" label="分类">
+                <n-form-item class="upload " label="分类">
                     <n-select  v-model:value="addArticle.categoryId" :options="categortyOptions" />
                 </n-form-item>
                 <n-form-item label="内容">
                     <rich-text-editor v-model="addArticle.content"></rich-text-editor>
                 </n-form-item>
-                <n-form-item label="">
+                <!-- <n-form-item label="">
                     <n-button type="primary" @click="add">提交</n-button>
-                </n-form-item>
+                </n-form-item> -->
             </n-form>
         </n-tab-pane>
         <n-tab-pane name="update" tab="修改">

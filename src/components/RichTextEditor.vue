@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="RichTextEditor">
         <Toolbar :editor="editorRef" :defaultConfig="toolbarConfig" :mode="mode"
             style="border-bottom: 1px solid #ccc" />
         <Editor :defaultConfig="editorConfig" :mode="mode" v-model="valueHtml.val"
@@ -8,13 +8,14 @@
 </template>
 <script setup>
 import '@wangeditor/editor/dist/css/style.css';
-import { ref, reactive, inject, shallowRef, computed } from 'vue'
+import { ref, reactive, inject, shallowRef, computed, onMounted } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
 
 const mode = ref("default")
 const editorRef = shallowRef();
 const toolbarConfig = { excludeKeys: ["uploadVideo"] };
 const editorConfig = { placeholder: '请输入内容...' };
+
 
 
 const props = defineProps({
@@ -53,4 +54,11 @@ editorConfig.MENU_CONF['insertImage'] = {
 }
 </script>
 <style scoped>
+.RichTextEditor{
+    width: 100%;
+}
+/* 解决全屏时层级问题 */
+.w-e-full-screen-container{
+    z-index: 99999999;
+}
 </style>
